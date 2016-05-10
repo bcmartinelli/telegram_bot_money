@@ -18,7 +18,7 @@ class CotacaoController extends Controller
 
       $tb = new TelegramBot();
       $tb->sendMessage($dolarComercialVenda);
-
+      
       echo $dolarComercialVenda;
     }
 }

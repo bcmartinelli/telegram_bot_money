@@ -12,7 +12,7 @@ class TelegramBot
     private $url;
     private $token_bot = '115524025:AAEGJD4EiE31ODPXlT1u-I0gAgKKKDQOpEg';
 
-    public function getUpdates()
+    public function getMe()
     {
         $this->url = 'https://api.telegram.org/bot' . $this->$token_bot . '/getUpdates';
 
@@ -34,7 +34,6 @@ class TelegramBot
     {
         $curl = new Curl();
         if($data !== null) {
-          echo $curl;
             $result = $curl->post($this->url, $data);
         } else {
             $result = $curl->get($this->url);
