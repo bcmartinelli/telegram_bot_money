@@ -14,7 +14,7 @@ class TelegramBot
 
     public function getMe()
     {
-        $this->url = 'https://api.telegram.org/bot' . $this->$token_bot . '/getUpdates';
+        $this->url = 'https://api.telegram.org/bot' . $this->token_bot . '/getUpdates';
 
         return $this->execute();
     }
@@ -24,7 +24,7 @@ class TelegramBot
         $this->url = 'https://api.telegram.org/bot' . $this->token_bot . '/sendMessage';
         $data = [
             'chat_id'    => '-33903501',
-            'text'       => 'Dolar: '. $dolarAtual,
+            'text'       => 'Dolar: R$'. $dolarAtual,
             'parse_mode' => 'Markdown',
         ];
         return $this->execute($data);

@@ -17,8 +17,8 @@ class CotacaoController extends Controller
       list($dolarComercialCompra, $dolarComercialVenda, $dolarTurismoCompra, $dolarTurismoVenda, $euroCompra, $euroVenda, $libraCompra, $libraVenda, $pesosCompra, $pesosVenda) = $uol->pegaValores();
 
       $tb = new TelegramBot();
-      $tb->sendMessage($dolarComercialVenda);
-      
-      echo $dolarComercialVenda;
+      //$tb->sendMessage($dolarComercialVenda);
+      echo $tb->getMe();
+      //$dolarComercialVenda;
     }
 }
