@@ -26,6 +26,7 @@ class TelegramBot
             'chat_id'    => '-33903501',
             'text'       => 'Dolar: R$'. $dolarAtual,
             'parse_mode' => 'Markdown',
+            'disable_notification' => true,
         ];
         return $this->execute($data);
     }
