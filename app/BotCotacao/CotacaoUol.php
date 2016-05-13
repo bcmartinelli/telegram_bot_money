@@ -70,14 +70,14 @@ class CotacaoUol
 
             //pegar cotacao compra
             preg_match("/<td>(.*)<\/td>/", $linha, $valor);
-            $compra = substr($valor[1],0,4);
+            $compra = substr($valor[1],0,5);
 
             //ler proxima linha
             $linha = $arrayHTML[++$indice];
 
             //pegar cotacao venda
             preg_match("/<td>(.*)<\/td>/", $linha, $valor);
-            $venda = substr($valor[1],0,4);
+            $venda = substr($valor[1],0,5);
 
             //atribuindo valores ao array de retorno
             array_push($arrayValores, $compra, $venda);
