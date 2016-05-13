@@ -25,7 +25,7 @@ class TelegramBot
     file_get_contents($sendto);
 
     function sendMessage(){
-    $message = "I am a baby bot.";
+    $message = "I am a baby bot2.";
     return $message;
     }
 
