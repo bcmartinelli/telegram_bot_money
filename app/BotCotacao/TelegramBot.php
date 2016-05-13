@@ -19,29 +19,8 @@ class TelegramBot
         $chatID = $update["message"]["chat"]["id"];
 
         // compose reply
-        $reply =  $this->sendMessage();
-
-        // send reply
-        $sendto = 'https://api.telegram.org/bot'.$this->bot_token.'/sendmessage?chat_id='.$chatID.'&text='.$reply;
-        file_get_contents($sendto);
-    }
-
-    function sendMessage()
-    {
-        $message = "I am a baby bot2.";
-        return $message;
-    }
-
-
-    /*
-    private $url;
-    private $token_bot = '115524025:AAEGJD4EiE31ODPXlT1u-I0gAgKKKDQOpEg';
-
-    public function getMe()
-    {
-        $this->url = 'https://api.telegram.org/bot' . $this->token_bot . '/getUpdates';
-
-        return $this->execute();
+        $reply =  $this->sendMessage($dolarAtual);
+        print_r($reply);
     }
 
     public function sendMessage($dolarAtual)
@@ -67,5 +46,18 @@ class TelegramBot
         $curl->close();
 
         return $result;
-    } */
+    }
+
+
+    /*
+    private $url;
+    private $token_bot = '115524025:AAEGJD4EiE31ODPXlT1u-I0gAgKKKDQOpEg';
+
+    public function getMe()
+    {
+        $this->url = 'https://api.telegram.org/bot' . $this->token_bot . '/getUpdates';
+
+        return $this->execute();
+    }
+    */
 }
