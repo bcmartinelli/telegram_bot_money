@@ -20,13 +20,13 @@ class TelegramBot
         $update = json_decode($content, true);
         $text = $update['message']['text'];
 
-        $chat_id = $update["message"]["chat"]["id"];
-
         if(isset($update) && $update != null) {
           Log::info('----------------------');
           Log::info('Data received: ', $update);
           Log::info('----------------------');
         }
+
+        $chat_id = $update["message"]["chat"]["id"];
 
         // compose reply
         if($text === '/dolar') {
