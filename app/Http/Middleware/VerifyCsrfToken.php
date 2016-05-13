@@ -12,6 +12,6 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        //
+        'webhook/115524025:AAEGJD4EiE31ODPXlT1u-I0gAgKKKDQOpEg'
     ];
 }
