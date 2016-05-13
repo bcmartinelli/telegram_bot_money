@@ -11,7 +11,7 @@ use Log;
 class TelegramBot
 {
     //private $bot_token = '115524025:AAEGJD4EiE31ODPXlT1u-I0gAgKKKDQOpEg';  BOT-KADMUS
-    private $bot_token = '231732279:AAGs0WbW46L1s5X7cFFn00kpL7Yns9vhQ4'; //BOT-COTACAO
+    private $bot_token = '231732279:AAGs0WbW46L1s5X7c-FFn00kpL7Yns9vhQ4'; //BOT-COTACAO
     private $url;
 
     public function webhook($dolar_atual, $content)
