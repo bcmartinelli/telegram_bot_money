@@ -19,7 +19,7 @@ class TelegramBot
         $chatID = $update["message"]["chat"]["id"];
 
         // compose reply
-        $reply =  sendMessage();
+        $reply =  $this->sendMessage();
 
         // send reply
         $sendto = 'https://api.telegram.org/bot'.$this->bot_token.'/sendmessage?chat_id='.$chatID.'&text='.$reply;
