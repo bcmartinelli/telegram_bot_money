@@ -9,6 +9,9 @@ use Curl\Curl;
 
 class TelegramBot
 {
+    define('BOT_TOKEN', '115524025:AAEGJD4EiE31ODPXlT1u-I0gAgKKKDQOpEg');
+    define('API_URL', 'https://api.telegram.org/bot115524025:AAEGJD4EiE31ODPXlT1u-I0gAgKKKDQOpEg/');
+
     // read incoming info and grab the chatID
     $content = file_get_contents("php://input");
     $update = json_decode($content, true);
@@ -18,7 +21,7 @@ class TelegramBot
     $reply =  sendMessage();
 
     // send reply
-    $sendto ="https://api.telegram.org/bot115524025:AAEGJD4EiE31ODPXlT1u-I0gAgKKKDQOpEg/sendmessage?chat_id=".$chatID."&text=".$reply;
+    $sendto =API_URL."sendmessage?chat_id=".$chatID."&text=".$reply;
     file_get_contents($sendto);
 
     function sendMessage(){
