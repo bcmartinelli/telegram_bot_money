@@ -27,12 +27,13 @@ class TelegramBot
     function sendMessage(){
     $message = "I am a baby bot.";
     return $message;
+    }
 
-
+    /*
     private $url;
     private $token_bot = '115524025:AAEGJD4EiE31ODPXlT1u-I0gAgKKKDQOpEg';
 
-    /*public function getMe()
+    public function getMe()
     {
         $this->url = 'https://api.telegram.org/bot' . $this->token_bot . '/getUpdates';
 
