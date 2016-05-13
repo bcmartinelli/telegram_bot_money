@@ -25,7 +25,7 @@ class TelegramBot
 
     public function sendMessage($dolarAtual)
     {
-        $this->url = 'https://api.telegram.org/bot' . $this->token_bot . '/sendMessage';
+        $this->url = 'https://api.telegram.org/bot' . $this->bot_token . '/sendMessage';
         $data = [
             'chat_id'    => '-33903501',
             'text'       => 'Dolar: R$'. $dolarAtual,
