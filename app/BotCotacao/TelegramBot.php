@@ -23,9 +23,9 @@ class TelegramBot
         $chat_id = $update["message"]["chat"]["id"];
 
         if(isset($update) && $update != null) {
-          Log::info('----------------------')
+          Log::info('----------------------');
           Log::info('Data received: ', $update);
-          Log::info('----------------------')
+          Log::info('----------------------');
         }
 
         // compose reply
