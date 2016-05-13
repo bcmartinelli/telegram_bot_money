@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('cotacao');
 });
 
-Route::get('cotacao', 'CotacaoController@index');
+Route::post('cotacao', 'CotacaoController@index');
