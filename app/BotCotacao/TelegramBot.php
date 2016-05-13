@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Curl\Curl;
+use Log;
 
 class TelegramBot
 {
