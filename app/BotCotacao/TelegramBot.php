@@ -9,7 +9,7 @@ use Curl\Curl;
 
 class TelegramBot
 {
-    private $bot_token = '115524025:AAEGJD4EiE31ODPXlT1u-I0gAgKKKDQOpEg');
+    private $bot_token = '115524025:AAEGJD4EiE31ODPXlT1u-I0gAgKKKDQOpEg';
 
     public function webhook($dolarAtual)
     {
