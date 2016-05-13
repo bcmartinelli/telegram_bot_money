@@ -10,23 +10,22 @@ use Log;
 
 class TelegramBot
 {
-    private $bot_token = '115524025:AAEGJD4EiE31ODPXlT1u-I0gAgKKKDQOpEg';
+    //private $bot_token = '115524025:AAEGJD4EiE31ODPXlT1u-I0gAgKKKDQOpEg';  BOT-KADMUS
+    private $bot_token = '231732279:AAGs0WbW46L1s5X7cFFn00kpL7Yns9vhQ4'; //BOT-COTACAO
     private $url;
 
     public function webhook($dolar_atual, $content)
     {
         // read incoming info and grab the chatID
         $update = json_decode($content, true);
-        
-        if(isset($update) && $update != null) {
-            Log::info('Dados recebidos.');
-            Log::info('Dados:', $update);
-        }
+        $text = $update['message']['text'];
 
         $chat_id = $update["message"]["chat"]["id"];
 
         // compose reply
-        $reply =  $this->sendMessage($dolar_atual, $chat_id);
+        if($text === '/dolar') {
+            $reply =  $this->sendMessage($dolar_atual, $chat_id);
+        }
     }
 
     public function sendMessage($dolar_atual, $chat_id)

@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('cotacao');
 });
 
-Route::post('webhook/115524025:AAEGJD4EiE31ODPXlT1u-I0gAgKKKDQOpEg', 'CotacaoController@index');
+Route::post('webhook/231732279:AAGs0WbW46L1s5X7c-FFn00kpL7Yns9vhQ4', 'CotacaoController@index');
