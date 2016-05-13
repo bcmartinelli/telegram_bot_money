@@ -23,9 +23,9 @@ class TelegramBot
         $chat_id = $update["message"]["chat"]["id"];
 
         // compose reply
-        //if($text === '/dolar') {
+        if($text === '/dolar') {
             $reply =  $this->sendMessage($dolar_atual, $chat_id);
-        //}
+        }
     }
 
     public function sendMessage($dolar_atual, $chat_id)
