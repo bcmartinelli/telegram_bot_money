@@ -25,15 +25,14 @@ class TelegramBot
           Log::info('----------------------');
         }
 
-        $text = $update['message']['text'];
+        if(isset($update['message']['text'])) {
+          $text = $update['message']['text'];
+          $chat_id = $update["message"]["chat"]["id"];
 
-
-
-        $chat_id = $update["message"]["chat"]["id"];
-
-        // compose reply
-        if($text === '/dolar') {
-            $reply =  $this->sendMessage($dolar_atual, $chat_id);
+          // compose reply
+          if($text === '/dolar') {
+              $reply =  $this->sendMessage($dolar_atual, $chat_id);
+          }
         }
     }
 
