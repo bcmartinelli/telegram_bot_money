@@ -9,25 +9,29 @@ use Curl\Curl;
 
 class TelegramBot
 {
-    define('BOT_TOKEN', '115524025:AAEGJD4EiE31ODPXlT1u-I0gAgKKKDQOpEg');
-    define('API_URL', 'https://api.telegram.org/bot115524025:AAEGJD4EiE31ODPXlT1u-I0gAgKKKDQOpEg/');
+    private $bot_token = '115524025:AAEGJD4EiE31ODPXlT1u-I0gAgKKKDQOpEg');
 
-    // read incoming info and grab the chatID
-    $content = file_get_contents("php://input");
-    $update = json_decode($content, true);
-    $chatID = $update["message"]["chat"]["id"];
+    public function webhook($dolarAtual)
+    {
+        // read incoming info and grab the chatID
+        $content = file_get_contents("php://input");
+        $update = json_decode($content, true);
+        $chatID = $update["message"]["chat"]["id"];
 
-    // compose reply
-    $reply =  sendMessage();
+        // compose reply
+        $reply =  sendMessage();
 
-    // send reply
-    $sendto =API_URL."sendmessage?chat_id=".$chatID."&text=".$reply;
-    file_get_contents($sendto);
-
-    function sendMessage(){
-    $message = "I am a baby bot2.";
-    return $message;
+        // send reply
+        $sendto = 'https://api.telegram.org/bot'.$this->bot_token.'/sendmessage?chat_id='.$chatID.'&text='.$reply;
+        file_get_contents($sendto);
     }
+
+    function sendMessage()
+    {
+        $message = "I am a baby bot2.";
+        return $message;
+    }
+
 
     /*
     private $url;
