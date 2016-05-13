@@ -18,13 +18,16 @@ class TelegramBot
     {
         // read incoming info and grab the chatID
         $update = json_decode($content, true);
-        $text = $update['message']['text'];
 
         if(isset($update) && $update != null) {
           Log::info('----------------------');
           Log::info('Data received: ', $update);
           Log::info('----------------------');
         }
+
+        $text = $update['message']['text'];
+
+
 
         $chat_id = $update["message"]["chat"]["id"];
 
