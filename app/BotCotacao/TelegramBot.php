@@ -10,11 +10,14 @@ use Curl\Curl;
 class TelegramBot
 {
     private $bot_token = '115524025:AAEGJD4EiE31ODPXlT1u-I0gAgKKKDQOpEg';
+    private $url;
 
     public function webhook($dolar_atual, $content)
     {
         // read incoming info and grab the chatID
         $update = json_decode($content, true);
+        Log::info('Dados recebidos.');
+        Log::info('Dados:', $update);
         $chat_id = $update["message"]["chat"]["id"];
 
         // compose reply
