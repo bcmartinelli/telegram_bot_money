@@ -11,24 +11,22 @@ class TelegramBot
 {
     private $bot_token = '115524025:AAEGJD4EiE31ODPXlT1u-I0gAgKKKDQOpEg';
 
-    public function webhook($dolarAtual)
+    public function webhook($dolar_atual, $content)
     {
         // read incoming info and grab the chatID
-        $content = file_get_contents("php://input");
         $update = json_decode($content, true);
-        $chatID = $update["message"]["chat"]["id"];
+        $chat_id = $update["message"]["chat"]["id"];
 
         // compose reply
-        $reply =  $this->sendMessage($dolarAtual);
-        print_r($reply);
+        $reply =  $this->sendMessage($dolar_atual, $chat_id);
     }
 
-    public function sendMessage($dolarAtual)
+    public function sendMessage($dolar_atual, $chat_id)
     {
         $this->url = 'https://api.telegram.org/bot' . $this->bot_token . '/sendMessage';
         $data = [
-            'chat_id'    => '-33903501',
-            'text'       => 'Dolar: R$'. $dolarAtual,
+            'chat_id'    => $chat_id,
+            'text'       => 'Dólar: R$'. $dolar_atual,
             'parse_mode' => 'Markdown',
             'disable_notification' => true,
         ];

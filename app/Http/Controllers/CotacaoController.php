@@ -14,9 +14,10 @@ class CotacaoController extends Controller
       $uol = new CotacaoUol(); // criar uma instancia da classe
 
       //receber os valores
-      list($dolarComercialCompra, $dolarComercialVenda, $dolarTurismoCompra, $dolarTurismoVenda, $euroCompra, $euroVenda, $libraCompra, $libraVenda, $pesosCompra, $pesosVenda) = $uol->pegaValores();
+      list($dolarComercialCompra, $dolar_comercial_venda, $dolarTurismoCompra, $dolarTurismoVenda, $euroCompra, $euroVenda, $libraCompra, $libraVenda, $pesosCompra, $pesosVenda) = $uol->pegaValores();
 
+      $content = file_get_contents("php://input");
       $tb = new TelegramBot();
-      $tb->webhook($dolarComercialVenda);
+      $tb->webhook($dolar_comercial_venda, $content);
     }
 }
