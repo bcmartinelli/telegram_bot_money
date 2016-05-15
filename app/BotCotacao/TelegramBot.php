@@ -64,7 +64,7 @@ class TelegramBot
 
         $data = [
             'chat_id'    => $chat_id,
-            'text'       => $text_mensage,
+            'text'       => 'aaa',
             'parse_mode' => 'Markdown',
             'disable_notification' => true,
         ];
