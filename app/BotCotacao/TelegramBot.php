@@ -57,9 +57,9 @@ class TelegramBot
         $hour = date('H');
 
         if ($hour < 10) {
-            $text_mensage = 'Abertura do dia ' . $date . PHP_EOL . 'Dólar: R$' . $dolar_atual;
+            $text_mensage = '[Abertura] ' . $date . PHP_EOL . 'Dólar: R$' . $dolar_atual;
         } else {
-            $text_mensage = 'Fechamento do dia ' . $date . PHP_EOL . 'Dólar: R$' . $dolar_atual;
+            $text_mensage = '[Fechamento] ' . $date . PHP_EOL . 'Dólar: R$' . $dolar_atual;
         }
 
         $data = [
