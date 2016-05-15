@@ -36,6 +36,6 @@ class Kernel extends ConsoleKernel
             list($dolarComercialCompra, $dolar_comercial_venda, $dolarTurismoCompra, $dolarTurismoVenda, $euroCompra, $euroVenda, $libraCompra, $libraVenda, $pesosCompra, $pesosVenda) = $uol->pegaValores();
             $tb = new TelegramBot();
             $tb->sendMessageCron($dolar_comercial_venda);
-        })->twiceDaily(9, 20);
+        })->dailyAt('20:04');
     }
 }
