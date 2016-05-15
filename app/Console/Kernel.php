@@ -4,6 +4,8 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\BotCotacao\CotacaoUol;
+use App\BotCotacao\TelegramBot;
 
 class Kernel extends ConsoleKernel
 {
@@ -14,6 +16,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         // Commands\Inspire::class,
+        \App\Console\Commands\Inspire::class,
     ];
 
     /**
@@ -26,5 +29,16 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->call(function() {
+            $uol = new CotacaoUol(); // criar uma instancia da classe
+
+            //receber os valores
+            list($dolarComercialCompra, $dolar_comercial_venda, $dolarTurismoCompra, $dolarTurismoVenda, $euroCompra, $euroVenda, $libraCompra, $libraVenda, $pesosCompra, $pesosVenda) = $uol->pegaValores();
+
+            $id_chat = '-33903501';
+            $content = file_get_contents("php://input");
+            $tb = new TelegramBot();
+            $tb->sendMessage($dolar_comercial_venda, $id_chat);
+        })->everyMinute();
     }
 }
