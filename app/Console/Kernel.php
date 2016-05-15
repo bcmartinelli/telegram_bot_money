@@ -34,11 +34,8 @@ class Kernel extends ConsoleKernel
 
             //receber os valores
             list($dolarComercialCompra, $dolar_comercial_venda, $dolarTurismoCompra, $dolarTurismoVenda, $euroCompra, $euroVenda, $libraCompra, $libraVenda, $pesosCompra, $pesosVenda) = $uol->pegaValores();
-
-            $id_chat = '-33903501';
-            $content = file_get_contents("php://input");
             $tb = new TelegramBot();
-            $tb->sendMessage($dolar_comercial_venda, $id_chat);
-        })->everyMinute();
+            $tb->sendMessage($dolar_comercial_venda);
+        })->twiceDaily(9, 20);
     }
 }

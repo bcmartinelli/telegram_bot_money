@@ -48,6 +48,29 @@ class TelegramBot
         return $this->execute($data);
     }
 
+    public function sendMessageCron($dolar_atual)
+    {
+        $chat_id = '-33903501';
+        $this->url = 'https://api.telegram.org/bot' . $this->bot_token . '/sendMessage';
+
+        $date = date ('d/m/Y');
+        $hour = date('H');
+
+        if ($hour < 10) {
+            $text_mensage = 'Abertura do dia ' . $date . PHP_EOL . 'Dólar: R$' . $dolar_atual;
+        } else {
+            $text_mensage = 'Fechamento do dia ' . $date . PHP_EOL . 'Dólar: R$' . $dolar_atual;
+        }
+
+        $data = [
+            'chat_id'    => $chat_id,
+            'text'       => $text_mensage,
+            'parse_mode' => 'Markdown',
+            'disable_notification' => true,
+        ];
+        return $this->execute($data);
+    }
+
     private function execute($data = null)
     {
         $curl = new Curl();
