@@ -65,7 +65,6 @@ class TelegramBot
         $data = [
             'chat_id'    => $chat_id,
             'text'       => $text_mensage,
-            'parse_mode' => 'Markdown',
             'disable_notification' => true,
         ];
         return $this->execute($data);
