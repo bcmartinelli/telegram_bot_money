@@ -4,7 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\BotCotacao\CotacaoUol;
+use App\BotCotacao\CotacaoYahoo;
 use App\BotCotacao\TelegramBot;
 
 class Kernel extends ConsoleKernel
@@ -30,12 +30,11 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
         $schedule->call(function() {
-            $uol = new CotacaoUol(); // criar uma instancia da classe
+            $yahoo = new CotacaoYahoo(); // criar uma instancia da classe
+            $dolar_atual = $yahoo->pegaValor(); // pega valor do dolar comercial venda
 
-            //receber os valores
-            list($dolarComercialCompra, $dolar_comercial_venda, $dolarTurismoCompra, $dolarTurismoVenda, $euroCompra, $euroVenda, $libraCompra, $libraVenda, $pesosCompra, $pesosVenda) = $uol->pegaValores();
             $tb = new TelegramBot();
-            $tb->sendMessageCron($dolar_comercial_venda);
+            $tb->sendMessageCron($dolar_atual);
         })->twiceDaily(9, 17)->weekdays();
     }
 }
