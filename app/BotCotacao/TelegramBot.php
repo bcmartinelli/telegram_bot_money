@@ -4,6 +4,8 @@ namespace App\BotCotacao;
 
 use Illuminate\Http\Request;
 
+use App\BotCotacao\CotacaoUol;
+use App\BotCotacao\CotacaoBitcoin;
 use App\Http\Requests;
 use Curl\Curl;
 use Log;
@@ -11,11 +13,12 @@ use Log;
 class TelegramBot
 {
     //private $bot_token = '115524025:AAEGJD4EiE31ODPXlT1u-I0gAgKKKDQOpEg';  BOT-KADMUS
-    private $bot_token = '231732279:AAGs0WbW46L1s5X7c-FFn00kpL7Yns9vhQ4'; //BOT-COTACAO
+    private $bot_token = '395654213:AAE5oToM4THtbEIoMz0ExKbIqrtb6Otj_Kc'; //BOT-COTACAO
     private $url;
 
-    public function webhook($dolar_atual, $content)
+    public function webhook($content)
     {
+
         // read incoming info and grab the chatID
         $update = json_decode($content, true);
 
@@ -30,21 +33,44 @@ class TelegramBot
           $chat_id = $update["message"]["chat"]["id"];
 
           // compose reply
-          if($text === '/dolar') {
-              $reply =  $this->sendMessage($dolar_atual, $chat_id);
+          if($text === '/dolar' || $text === '/dolar@KadmusMoney_bot') {
+              $uol = new CotacaoUol(); // criar uma instancia da classe
+
+              //receber os valores
+              list($dolarComercialCompra, $dolar_comercial_venda, $dolarTurismoCompra, $dolarTurismoVenda, $euroCompra, $euroVenda, $libraCompra, $libraVenda, $pesosCompra, $pesosVenda) = $uol->pegaValores();
+              $dolar_atual = $dolar_comercial_venda; // pega valor do dolar comercial venda
+
+              $reply =  $this->sendMessage($dolar_atual, $chat_id, 1);
+
+          } else if ($text === '/bitcoin' || $text === '/bitcoin@KadmusMoney_bot') {
+
+              $bitcoin = new CotacaoBitcoin(); // cria uma instancia da classe
+              $bitcoin_atual = $bitcoin->pegaValor(); // pega valor do bitcoin em dolar_comercial_venda
+
+              $reply =  $this->sendMessage($bitcoin_atual, $chat_id, 2);
           }
         }
     }
 
-    public function sendMessage($dolar_atual, $chat_id)
+    public function sendMessage($valor_atual, $chat_id, $type)
     {
         $this->url = 'https://api.telegram.org/bot' . $this->bot_token . '/sendMessage';
-        $data = [
-            'chat_id'    => $chat_id,
-            'text'       => 'Dólar: R$'. $dolar_atual,
-            'parse_mode' => 'Markdown',
-            'disable_notification' => true,
-        ];
+        if($type == 1) {
+            $data = [
+                'chat_id'    => $chat_id,
+                'text'       => 'Dólar: R$'. $valor_atual,
+                'parse_mode' => 'Markdown',
+                'disable_notification' => true,
+            ];
+        } else if($type == 2) {
+            $data = [
+                'chat_id'    => $chat_id,
+                'text'       => 'Bitcoin: US$'. $valor_atual,
+                'parse_mode' => 'Markdown',
+                'disable_notification' => true,
+            ];
+        }
+
         return $this->execute($data);
     }
 
