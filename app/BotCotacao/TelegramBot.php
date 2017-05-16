@@ -4,7 +4,7 @@ namespace App\BotCotacao;
 
 use Illuminate\Http\Request;
 
-use App\BotCotacao\CotacaoUol;
+use App\BotCotacao\CotacaoYahoo;
 use App\BotCotacao\CotacaoBitcoin;
 use App\Http\Requests;
 use Curl\Curl;
@@ -34,11 +34,8 @@ class TelegramBot
 
           // compose reply
           if($text === '/dolar' || $text === '/dolar@KadmusMoney_bot') {
-              $uol = new CotacaoUol(); // criar uma instancia da classe
-
-              //receber os valores
-              list($dolarComercialCompra, $dolar_comercial_venda, $dolarTurismoCompra, $dolarTurismoVenda, $euroCompra, $euroVenda, $libraCompra, $libraVenda, $pesosCompra, $pesosVenda) = $uol->pegaValores();
-              $dolar_atual = $dolar_comercial_venda; // pega valor do dolar comercial venda
+              $yahoo = new CotacaoYahoo(); // criar uma instancia da classe
+              $dolar_atual = $yahoo->pegaValor(); // pega valor do dolar comercial venda
 
               $reply =  $this->sendMessage($dolar_atual, $chat_id, 1);
 
