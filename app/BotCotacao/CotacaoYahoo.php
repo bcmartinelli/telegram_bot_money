@@ -10,7 +10,6 @@ use Curl\Curl;
 class CotacaoYahoo
 {
     public function pegaValor() {
-        $i = -1;
         $count = 50;
 
         do {
@@ -27,15 +26,20 @@ class CotacaoYahoo
 
 
         if($value == true) {
-            do {
-                $i++;
-                $moeda = $json->list->resources[$i]->resource->fields->price;
+            for($i = 0; $i < len($json->list->resources); $i++) {
+                if ($json->list->resources[$i]->resource->fields->name == "USD/BRL"){
+                    $moeda = $json->list->resources[$i]->resource->fields->price;
 
-            } while ($json->list->resources[$i]->resource->fields->name != "USD/BRL");
+                    $moeda = str_replace('.', ',', $moeda);
+                    $moeda = substr($moeda, 0, -3);
+                    $moeda = "Dólar: R$".$moeda;
 
-            $moeda = str_replace('.', ',', $moeda);
-            $moeda = substr($moeda, 0, -3);
-            $moeda = "Dólar: R$".$moeda;
+                    break;
+
+                } else {
+                    $moeda = "Moéda não encontrada!"
+                }
+            }            
         } else {
             $moeda = "Json retornando NULL, tente novamente!";
         }
