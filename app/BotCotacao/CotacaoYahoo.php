@@ -37,7 +37,7 @@ class CotacaoYahoo
             $moeda = substr($moeda, 0, -3);
             $moeda = "Dólar: R$".$moeda;
         } else {
-            $moeda = echo "Json retornando NULL, tente novamente!";
+            $moeda = "Json retornando NULL, tente novamente!";
         }
 
         return $moeda;
