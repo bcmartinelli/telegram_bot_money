@@ -37,9 +37,9 @@ class CotacaoYahoo
                     break;
 
                 } else {
-                    $moeda = "Moéda não encontrada!"
+                    $moeda = "Moéda não encontrada!";
                 }
-            }            
+            }
         } else {
             $moeda = "Json retornando NULL, tente novamente!";
         }
