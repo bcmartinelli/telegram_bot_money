@@ -26,7 +26,7 @@ class CotacaoYahoo
 
 
         if($value == true) {
-            for($i = 0; $i < len($json->list->resources); $i++) {
+            for($i = 0; $i < count($json->list->resources); $i++) {
                 if ($json->list->resources[$i]->resource->fields->name == "USD/BRL"){
                     $moeda = $json->list->resources[$i]->resource->fields->price;
 
